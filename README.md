@@ -43,8 +43,7 @@ You're reading it!
 
 ### Camera Calibration
 
-#### 1. 
-In the carnd-term1-project4-advanced-lane-lines.ipynb, second cell I found all the calibration images Chess Board Corners. Then saved to pickle file (wide_dist_pickle.p) as "objpoints" and "imgpoints".
+#### 1. In the carnd-term1-project4-advanced-lane-lines.ipynb, second cell I found all the calibration images Chess Board Corners. Then saved to pickle file (wide_dist_pickle.p) as "objpoints" and "imgpoints".
 At third cell calibrated camera using obj and img points found at the 2. cell. Saved "mtx" and "dist" to same pickle file.
 At fourth cell applied calibration to camera and saved all the calibrated images as undist_*.jpg. Here is an example of it:
 
@@ -57,18 +56,15 @@ At fourth cell applied calibration to camera and saved all the calibrated images
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
-#### 2. 
-At cell six I defined; sobelx, sobely, magnitude, direction and color transform (HLS) and combined them to create binary image as binary_ex.jpg. Here you can see the result:
+#### 2. At cell six I defined; sobelx, sobely, magnitude, direction and color transform (HLS) and combined them to create binary image as binary_ex.jpg. Here you can see the result:
 
 ![alt text][image3]
 
-#### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
-
-The code for my perspective transform includes a function called `warp_the_image()`, which appears in cell 7 in Ipython notebook. This function takes as inputs an image (`image, save_images=False,plot_result=False,idx=0`). In this function, first I applied the functions mentioned at #2 and created binary image. Then created the points for 'src' considering the center of the image in horizontal axis. Defined 'dst' points. Then used cv2.getPerspectiveTransform to find M, Minv. Created warped image using cv2.warpPerspective. Saved images as 'warped_combined*.jpg'.   
+#### 3. The code for my perspective transform includes a function called `warp_the_image()`, which appears in cell 7 in Ipython notebook. This function takes as inputs an image (`image, save_images=False,plot_result=False,idx=0`). In this function, first I applied the functions mentioned at #2 and created binary image. Then created the points for 'src' considering the center of the image in horizontal axis. Defined 'dst' points. Then used cv2.getPerspectiveTransform to find M, Minv. Created warped image using cv2.warpPerspective. Saved images as 'warped_combined*.jpg'.   
 
 ```python
-mask_y_height = int(img_shp[0]*0.62) #Upper bound of y
-offset=img.shape[0]*0.25 			 #offset	
+mask_y_height = int(img_shp[0]*0.62) #Upper bound of y on the image
+offset=img.shape[0]*0.25 			 
 
 center_x = img_shp[1]//2 
 upper_margin = 50
@@ -98,8 +94,7 @@ I verified that my perspective transform was working as expected by drawing the 
 
 ![alt text][image4]
 
-#### 4. 
-To identify lane-line pixels I created function draw_polyfit(binary_warped,draw_polyfit_lines=False) in cell nine, which takes in an image and calls warp_the_image function. Using this warped image I created histogram and found the location of lane lines according to the density of white pixels. Here is an example of 2 images histogram:
+#### 4. To identify lane-line pixels I created function draw_polyfit(binary_warped,draw_polyfit_lines=False) in cell nine, which takes in an image and calls warp_the_image function. Using this warped image I created histogram and found the location of lane lines according to the density of white pixels. Here is an example of 2 images histogram:
 
 ![alt text][image5]
 
@@ -108,26 +103,21 @@ An example of polynomial fit lines:
 
 ![alt text][image6]
 
-#### 5. 
-In cell eleven, created curve_radius(image) function. Which takes in an image and from draw_polyfit function gets ploty points to be used in left and right curvatures of the lanes. 
+#### 5. In cell eleven, created curve_radius(image) function. Which takes in an image and from draw_polyfit function gets ploty points to be used in left and right curvatures of the lanes. 
 
-#### 6.
-In cell 12, defined lane_area(image) function. Using all the functions mentioned above, found the points 'pts' needed to be fed into cv2.fillPoly() function. Also found the place of the car according to the center of the lane in this lane_area() function. 
+#### 6. In cell 12, defined lane_area(image) function. Using all the functions mentioned above, found the points 'pts' needed to be fed into cv2.fillPoly() function. Also found the place of the car according to the center of the lane in this lane_area() function. 
 
 ---
 
 ### Pipeline (video)
 
-#### 1. 
-
-Here's a [link to my video result](https://drive.google.com/file/d/0B1qa2SOuBDHOUWg0RVR2dEJMZDA/view)
+#### 1. Here's a [link to my video result](https://drive.google.com/file/d/0B1qa2SOuBDHOUWg0RVR2dEJMZDA/view)
 
 ---
 
 ### Discussion
 
-#### 1. 
-Had too much problem while deciding best points for src. Even small changes caused unparallel lines, which caused separated lane lines at warped_combined. Lost too much time on finding proper src points. After deciding decent points, other problems have been solved. 
+#### 1. Had too much problem while deciding best points for src. Even small changes caused unparallel lines, which caused separated lane lines at warped_combined. Lost too much time on finding proper src points. After deciding decent points, other problems have been solved. 
 
 
 
