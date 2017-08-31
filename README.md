@@ -111,7 +111,7 @@ An example of polynomial fit lines:
 
 ### Pipeline (video)
 
-#### 1. Here's a [link to my video result](https://drive.google.com/file/d/0B1qa2SOuBDHOUWg0RVR2dEJMZDA/view)
+#### 1. Here's a [link to my video result](https://drive.google.com/open?id=0B1qa2SOuBDHOOGpLajFzQXk5blE)
 
 ---
 
